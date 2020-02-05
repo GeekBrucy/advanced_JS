@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h1>Decimal to Binary</h1>
+    <input id="dec_input" type="text" placeholder="Enter Decimal Number"> =>
+    <input id="bin_res" type="text" readonly>
+  </div>
+  <script src="./01stack.js"></script>
+  <script>
+    var s = new Stack();
+    
+    var dec_input = document.getElementById('dec_input');
+    var bin_res = document.getElementById('bin_res');
+
+    dec_input.addEventListener('keyup', function(){
+      var bin_res_str = '';
+      var dec_num = parseInt(this.value);
+      if(dec_num){
+        var temp = 0;
+        while(dec_num !== 0){
+          s.push(dec_num % 2);
+          dec_num = parseInt(dec_num / 2);
+        }
+      }
+      var stack_size = s.size();
+
+      while(!s.isEmpty()){
+        bin_res_str += s.pop().toString();
+      }
+      bin_res.value = bin_res_str
+    })
+    // other solution
+    var divBy2 = function(number){
+      var stack = new Stack();
+      var remaining;
+
+      var res = '';
+      while(number > 0){
+        remaining = number % 2;
+        stack.push(remaining);
+        number = Math.floor(number / 2);
+      }
+      while(!stack.isEmpty()){
+        res += stack.pop();
+      }
+      return res;
+    }
+  </script>
+</body>
+</html>
