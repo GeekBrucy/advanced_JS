@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h1>Passing Game</h1>
+  </div>
+  <script src="./02queue.js"></script>
+  <script>
+    // player list
+    var players = ['a', 'b', 'c', 'd', 'e', 'f'];
+    
+    var number = 3;
+    var passing_game = function(names, number){
+      var q = new Queue();
+      for(var i = 0; i < names.length; i++){
+        q.enqueue(names[i]);
+      }
+      var eliminated = '';
+      while(q.size() > 1){
+        for(var i = 0; i < number - 1; i++){
+          q.enqueue(q.dequeue());
+        }
+        eliminated = q.dequeue();
+        console.log(eliminated);
+      }
+      return q.dequeue();
+    }
+  </script>
+</body>
+</html>
