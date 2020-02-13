@@ -52,4 +52,48 @@ var LinkedList = function(){
       }
     }
   }
+  this.removeAt = function(position){
+    if(position >= 0 && position < length){
+      if(position === 0){
+        var current = head;
+        head = current.next;
+      } else {
+        var current = head;
+        var previous = null;
+        var index = 0;
+        while(index < position) {
+          previous = current;
+          current = current.next;
+          index++;
+        }
+        previous.next = current.next;
+      }
+
+      length--;
+      return current;
+    }
+    return null;
+  }
+  this.remove = function(element){
+    return this.removeAt(this.indexOf(element));
+  }
+  this.indexOf = function(element){
+    var index = 0;
+    var current = head;
+    while(current){
+      if(element === current.element){
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+    return -1;
+  }
+  this.isEmpty = function(){
+    return length === 0;
+  }
+
+  this.size = function(){
+    return length;
+  }
 }
