@@ -31,11 +31,25 @@ var Tree = function(){
     }
   }
 
-  this.search = function(value){}
+  this.search = function(value){
 
-  this.remove = function(value){}
+  }
 
-  this.traverse = function(){}
+  this.remove = function(value){
+
+  }
+
+  var traverse = function(node, callback){
+    if(node === null){
+      return
+    }
+    traverse(node.left, callback);
+    traverse(node.right, callback);
+    callback(node.value);
+  }
+  this.traverse = function(callback){
+    traverse(root, callback);
+  }
 
   this.getRoot = function(){
     return root;
