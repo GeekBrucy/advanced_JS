@@ -10,13 +10,19 @@
   <script>
     var t = new Tree();
     t.insert(10);
+    t.insert(10);
     t.insert(11);
     t.insert(9);
+    t.insert(8);
+    t.insert(7);
+    t.insert(6);
     // console.log(t.getRoot());
     var print = function(value){
       console.log(value)
     }
     t.traverse(print);
+    t.min()
+    t.max()
   </script>
 </body>
 </html>

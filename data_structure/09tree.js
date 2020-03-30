@@ -39,6 +39,29 @@ var Tree = function(){
 
   }
 
+  var min = function(node){
+    // situation 1: tree is empty
+    if(node === null) return null;
+
+    while(node && node.left){
+      node = node.left;
+    }
+    return node;
+  }
+  this.min = function(){
+    return min(root);
+  }
+  this.max = function(){
+    return max(root);
+  }
+  var max = function(node){
+    if(node === null) return null;
+    
+    while(node && node.right){
+      node = node.right;
+    }
+    return node;
+  }
   var traverse = function(node, callback){
     if(node === null){
       return
