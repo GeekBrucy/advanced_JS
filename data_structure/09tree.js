@@ -34,9 +34,45 @@ var Tree = function(){
   this.search = function(value){
 
   }
+  var findMinNode = function(node){
+    if(node === null) return null;
+    while(node && node.left){
+      node = node.left;
+    }
+    return node;
+  }
+  var removeNode = function(node, value){
+    if(node === null) return null;
+    if(value > node.value){
+      // to the right
+      node.right = removeNode(node.right, value);
+      return node;
+    } else if(value < node.value){
+      // to the left
+      node.left = removeNode(node.left, value);
+      return node;
+    } else {
+      // start removing
+      if(node.left === null && node.right === null){
+        node = null;
+        return node;
+      }
+
+      if(node.left === null && node.right){
+        return node.right;
+      } else if (node.right === null && node.left){
+        return node.left;
+      }
+      // has two child node
+      var aux = findMinNode(node);
+      node.value = aux.value;
+      node.right = removeNode(node.right, aux.value);
+      return node;
+    }
+  }
 
   this.remove = function(value){
-
+    root = removeNode(root, value);
   }
 
   var min = function(node){
